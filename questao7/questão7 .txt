@@ -1,0 +1,26 @@
+1. Virtual Private Cloud (VPC)
+A VPC é uma rede virtual privada dentro da infraestrutura da AWS. Ela permite que você tenha controle total sobre o ambiente de rede, incluindo endereçamento IP, sub-redes, rotas e gateways. Dentro de uma VPC, você pode segmentar diferentes partes da sua aplicação, configurando a comunicação interna e externa.
+
+
+2. Subnets
+Dentro de uma VPC, as subnets são divisões da rede. Cada subnet é uma sub-rede específica dentro do bloco de endereços IP da VPC. Elas podem ser configuradas como subnets públicas ou subnets privadas, dependendo se você deseja que os recursos nelas (como instâncias EC2) sejam acessíveis pela internet.
+
+Subnets Públicas: São conectadas diretamente a um Internet Gateway, permitindo que recursos nela possam se comunicar com a internet.
+Subnets Privadas: Não têm acesso direto à internet e são utilizadas para recursos internos (bancos de dados, servidores de backend, etc.). Podem se comunicar com a internet apenas através de um NAT Gateway ou NAT Instance.
+
+
+3. Security Groups
+Os Security Groups são conjuntos de regras de firewall que controlam o tráfego de entrada e saída das instâncias associadas. Eles funcionam ao nível da instância, ou seja, são aplicados diretamente aos recursos, como instâncias EC2, para permitir ou negar tráfego.
+
+Tráfego de Entrada (Inbound Rules): Define quais tipos de tráfego são permitidos entrar na instância. Por exemplo, você pode permitir conexões SSH (porta 22) ou HTTP (porta 80).
+Tráfego de Saída (Outbound Rules): Define o tráfego que a instância pode enviar para fora da rede.
+Relação entre VPC, Subnets e Security Groups:
+VPC é o contêiner maior, onde toda a configuração de rede acontece. Todas as subnets e security groups operam dentro da VPC.
+Subnets são partes da VPC que organizam os recursos em diferentes segmentos da rede, cada um com um propósito distinto (público ou privado).
+Security Groups controlam o acesso de rede a cada recurso individual dentro da VPC, seja nas subnets públicas ou privadas. Eles definem quem pode acessar as instâncias dentro de cada subnet e como essas instâncias se comunicam com outros recursos.
+
+
+Exemplo Prático:
+Você pode criar uma VPC que tenha uma subnet pública para servidores web e uma subnet privada para um banco de dados. Os Security Groups garantirão que os servidores web na subnet pública possam ser acessados via HTTP/HTTPS pela internet, enquanto o banco de dados na subnet privada só pode ser acessado pelos servidores web, controlando a comunicação de forma segura.
+
+Essa estrutura permite alta flexibilidade e segurança ao implementar soluções em nuvem, garantindo que as instâncias e outros recursos estejam protegidos de acessos indesejados e segmentados de acordo com as necessidades do sistema.
